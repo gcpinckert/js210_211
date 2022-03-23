@@ -210,7 +210,7 @@ console.log('');
 let k = 'outer';
 
 console.log(k);  // outer
-setScopeAgain(); // Error
+setScopeAgain(); // TypeError: setScopeAgain is not a function
 console.log(k);
 var setScopeAgain = function () {
   k = 'inner';
