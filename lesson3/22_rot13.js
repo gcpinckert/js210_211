@@ -46,41 +46,25 @@ Algorithm:
 */
 
 const ROTATION = 13;
-const ALPHA_UPPER_MIN = 65;
-const ALPHA_UPPER_MAX = 90;
-const ALPHA_UPPER_MID = ALPHA_UPPER_MAX - ROTATION; // 77
-const ALPHA_LOWER_MIN = 97;
-const ALPHA_LOWER_MAX = 122;
-const ALPHA_LOWER_MID = ALPHA_LOWER_MAX - ROTATION; // 109
+const alphaFirstHalf = (char) => /[A-Ma-m]/.test(char);
 
-function alphaFirstHalf(asciiCode) {
-  return (
-    (asciiCode >= ALPHA_UPPER_MIN && asciiCode <= ALPHA_UPPER_MID) ||
-    (asciiCode >= ALPHA_LOWER_MIN && asciiCode <= ALPHA_LOWER_MID)
-  );
-}
-
-function alphaLastHalf(asciiCode) {
-    return (
-      (asciiCode > ALPHA_UPPER_MID && asciiCode <= ALPHA_UPPER_MAX) ||
-      (asciiCode > ALPHA_LOWER_MID && asciiCode <= ALPHA_LOWER_MAX)
-    );
+function rotateChar(char) {
+  if (alphaFirstHalf(char)) {
+    return String.fromCharCode(char.charCodeAt(0) + ROTATION);
+  } else {
+    return String.fromCharCode(char.charCodeAt(0) - ROTATION);
+  }
 }
 
 function rot13(originalStr) {
-  let encodedStr = '';
+  let encodedStr = "";
 
   for (let index = 0; index < originalStr.length; index += 1) {
-    let originalAscii = originalStr.charCodeAt(index);
-    
-    if (alphaFirstHalf(originalAscii)) {
-      let newAscii = originalAscii + ROTATION;
-      encodedStr += String.fromCharCode(newAscii);
-    } else if (alphaLastHalf(originalAscii)) {
-      let newAscii = originalAscii - ROTATION;
-      encodedStr += String.fromCharCode(newAscii);
+    let currentChar = originalStr[index];
+    if (/[A-Za-z]/.test(currentChar)) {
+      encodedStr += rotateChar(currentChar);
     } else {
-      encodedStr += originalStr[index];
+      encodedStr += currentChar;
     }
   }
 
@@ -91,8 +75,14 @@ console.log(
   rot13("Teachers open the door, but you must enter by yourself.") ===
     "Grnpuref bcra gur qbbe, ohg lbh zhfg ragre ol lbhefrys."
 );
-
 console.log(
   rot13(rot13("Teachers open the door, but you must enter by yourself.")) ===
     "Teachers open the door, but you must enter by yourself."
+);
+console.log(rot13("Abc") == "Nop");
+console.log(rot13("xYz") == "kLm");
+console.log(rot13("EBG13 rknzcyr.") == "ROT13 example.");
+console.log(
+  rot13("This is my first ROT13 excercise!") ==
+    "Guvf vf zl svefg EBG13 rkprepvfr!"
 );
