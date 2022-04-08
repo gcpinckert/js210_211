@@ -20,7 +20,7 @@ function sum1(a, b) {
   return a + b;
 }
 
-// not pure, always returns `undefined`, which is not dependant on the arguments
+// pure, always returns `undefined`, which is not dependant on the arguments
 function sum2(a, b) {
   a + b;
 }
@@ -35,7 +35,7 @@ function sum4(a, b) {
   return a + b + Math.random(); // side effect, access system random number generator
 }
 
-// not pure, always returns same value which is not dependant on the arguments
+// pure, always returns same value which is not dependant on the arguments
 function sum(a, b) {
   return 3.1415;
 }
