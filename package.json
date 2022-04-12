@@ -18,6 +18,11 @@
   },
   "homepage": "https://github.com/gcpinckert/js210_211#readme",
   "dependencies": {
+    "babel-eslint": "^10.1.0",
     "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-cli": "^1.1.1"
   }
 }
