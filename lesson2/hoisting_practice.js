@@ -1,6 +1,8 @@
 
-sayHello();            // raises ReferenceError: Cannot access 'sayHello' before initialization
 
-let sayHello = function () {
-  console.log('Hello');
-};
+let hello = 'Hello!';
+hello();
+
+function hello() {     // SyntaxError: Identifier 'hello' has already been declared
+  console.log('Hi');
+}
