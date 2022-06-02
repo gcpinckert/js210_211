@@ -1,13 +1,11 @@
-function hello() {
-  // function declaration
-  console.log('Hi');
+// not a pure function
+let tipPercent = .15;
+
+function calculateTotal(subtotal) {
+  let tip = tipPercent * subtotal;
+  return subtotal + tip;
 }
 
-(function goodbye() {
-  // function expression
-  console.log('Bye');
-});
-
-
-hello();
-goodbye();
+console.log(calculateTotal(100));     // => 115
+tipPercent = .20;
+console.log(calculateTotal(100));     // => 120
