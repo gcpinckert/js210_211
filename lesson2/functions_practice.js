@@ -1,11 +1,10 @@
-// not a pure function
-let tipPercent = .15;
-
-function calculateTotal(subtotal) {
-  let tip = tipPercent * subtotal;
-  return subtotal + tip;
+function sayArguments() {
+  for (let i = 0; i < arguments.length; i += 1) {
+    console.log(arguments[i]);
+  }
 }
 
-console.log(calculateTotal(100));     // => 115
-tipPercent = .20;
-console.log(calculateTotal(100));     // => 120
+sayArguments('a', 'b', 'c');
+sayArguments('Hello World');
+sayArguments(1, 2, 3, 4, 5);
+sayArguments();
